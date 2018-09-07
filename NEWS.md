@@ -1,3 +1,43 @@
+# prediction 0.3.10
+
+* Added tests for `find_data()` and `prediction.lm()` to check for correct behavior in the presence of missing data (`na.action`) and `subset` arguments. (#28)
+
+# prediction 0.3.8
+
+* Provisional support for variances of average predictions for GLMs. (#17)
+* Added an example dataset, `margex`, borrowed from Stata's identically named data.
+
+# prediction 0.3.7
+
+* `summary(prediction(...))` now reports variances of average predictions, along with test statistics, p-values, and confidence intervals, where supported. (#17)
+* Added a function `prediction_summary()` which simply calls `summary(prediction(...))`.
+* All methods now return additional attributes.
+
+# prediction 0.3.6
+
+* Small fixes for failing CRAN checks. (#25)
+* Remove `prediction.bigglm()` method (from **biglm**) due to failing tests. (#25)
+
+# prediction 0.3.5
+
+* Fixed a bug that required specifying `stats::poly()` rather than just `poly()` in model formulae. (#22)
+
+# prediction 0.3.4
+
+* Added `prediction.glmnet()` method for "glmnet" objects from **glmnet**. (#1)
+
+# prediction 0.3.3
+
+* `prediction.merMod()` gains an `re.form` argument to pass forward to `predict.merMod()`.
+
+# prediction 0.3.2
+
+* Fix typo in "speedglm" that was overwriting "glm" method.
+
+# prediction 0.3.0
+
+* CRAN release.
+
 # prediction 0.2.11
 
 * Added `prediction.glmML()` method for "glimML" objects from **aod**. (#1)

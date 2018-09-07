@@ -1,6 +1,6 @@
 #' @rdname prediction
 #' @export
-prediction.glm <- 
+prediction.speedglm <- 
 function(model, 
          data = find_data(model, parent.frame()), 
          at = NULL, 
@@ -18,7 +18,6 @@ function(model,
     } else {
         # reduce memory profile
         model[["model"]] <- NULL
-        attr(model[["terms"]], ".Environment") <- NULL
         
         # setup data
         out <- build_datalist(data, at = at, as.data.frame = TRUE)
@@ -29,11 +28,18 @@ function(model,
         pred <- make_data_frame(out, fitted = tmp, se.fitted = rep(NA_real_, nrow(out)))
     }
     
-    # obs-x-(ncol(data)+2) data frame
+    # variance(s) of average predictions
+    vc <- NA_real_
+    
+    # output
     structure(pred, 
-              class = c("prediction", "data.frame"), 
-              row.names = seq_len(nrow(pred)),
+              class = c("prediction", "data.frame"),
               at = if (is.null(at)) at else at_specification,
-              model.class = class(model),
-              type = type)
+              type = type,
+              call = if ("call" %in% names(model)) model[["call"]] else NULL,
+              model_class = class(model),
+              row.names = seq_len(nrow(pred)),
+              vcov = vc,
+              jacobian = NULL,
+              weighted = FALSE)
 }

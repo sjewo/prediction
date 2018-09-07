@@ -1,6 +1,21 @@
 language: r
 sudo: false
 cache: packages
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+    - os: linux
+      dist: trusty
+      env: R_CODECOV=true
+    - os: osx
+      osx_image: xcode8
+    - os: osx
+      osx_image: xcode8.3
 r_packages:
 - covr
 - AER
@@ -17,6 +32,7 @@ r_packages:
 - ffbase
 - gam
 - gee
+- glmnet
 - glmx
 - kernlab
 - lme4
@@ -40,4 +56,4 @@ r_packages:
 - truncreg
 - VGAM
 after_success:
-- Rscript -e 'library("covr");codecov()'
+- R -q -e 'library("covr");codecov()'

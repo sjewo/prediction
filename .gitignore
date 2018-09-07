@@ -1,3 +1,8 @@
+.Renviron
+.Rproj.user
+.Rhistory
+.RData
+*.Rproj
 README.html
 /inst/doc/*.log
 /vignettes/*.log
@@ -9,3 +14,4 @@ README.html
 /vignettes/*.blg
 /vignettes/figure/
 /vignettes/*.bib.bak
+/revdep/
